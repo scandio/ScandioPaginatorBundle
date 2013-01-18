@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="scandio.paginator.class">Scandio\PaginatorBundle\Service\Paginator</parameter>
+        <parameter key="scandio.paginator.factory.class">Scandio\PaginatorBundle\Factory\PaginatorFactory</parameter>
+    </parameters>
+
+    <services>
+        <service id="scandio.paginator_factory" class="%scandio.paginator.factory.class%" scope="request">
+            <argument type="service" id="router" />
+            <argument type="service" id="templating" />
+            <argument type="service" id="request" />
+        </service>
+
+        <service id="scandio.paginator" class="%scandio.paginator.class%" factory-service="scandio.paginator_factory" factory-method="create">
+        </service>
+    </services>
+</container>
