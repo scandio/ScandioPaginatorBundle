@@ -1,5 +1,5 @@
 {
-    "name": "scandio/ScandioPaginatorBundle",
+    "name": "scandio/paginator-bundle",
     "type": "symfony-bundle",
     "description": "A simple pagination bundle for Symfony2 without the fuzz.",
     "keywords": ["pager", "paginator", "pagination", "symfony2", "bundle", "scandio"],
