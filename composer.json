@@ -1,0 +1,33 @@
+{
+    "name": "scandio/ScandioPaginatorBundle",
+    "type": "symfony-bundle",
+    "description": "A simple pagination bundle for Symfony2 without the fuzz.",
+    "keywords": ["pager", "paginator", "pagination", "symfony2", "bundle", "scandio"],
+    "homepage": "https://github.com/scandio/ScandioPaginatorBundle",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Scandio GmbH",
+            "homepage": "http://www.scandio.de/"
+        },
+        {
+            "name": "Veit Osiander",
+            "homepage": "https://github.com/siklol"
+        }
+    ],
+
+    "require": {
+        "php":                      ">=5.3.3",
+        "symfony/framework-bundle": "~2.0",
+        "twig/twig":                "~1.5"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Scandio\\PaginatorBundle": ""
+        }
+    },
+
+    "target-dir": "Scandio/PaginatorBundle"
+}
