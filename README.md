@@ -35,7 +35,7 @@ If you use a `deps` file, add:
 
 Or if you want to clone the repos:
 
-    # Install Knp components
+    # Install Paginator
     git clone git://github.com/scandio/ScandioPaginatorBundle.git vendor/bundles/Scandio/PaginatorBundle
 
 
