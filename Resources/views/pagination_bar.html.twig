@@ -1,55 +1,35 @@
 <div class="pagination">
     {% if page > 2 %}
-    <span class="first">
+        <span class="first">
         <a href="{{ path(paginationRoute, {'page': 1}|merge(pathParameters)) }}">&lt;&lt;</a>
     </span>
     {% endif %}
 
     {% if page > 1 %}
-    <span class="previous">
+        <span class="previous">
         <a href="{{ path(paginationRoute, {'page': page-1}|merge(pathParameters)) }}">&lt;</a>
     </span>
     {% endif %}
 
-    {% if page > 3 %}
-    <span class="current">
-        <a href="{{ path(paginationRoute, {'page': page-3}|merge(pathParameters)) }}">{{ page-3 }}</a>
-    </span>
-    {% endif %}
-
-    {% if page > 2 %}
-    <span class="page">
-        <a href="{{ path(paginationRoute, {'page': page-2}|merge(pathParameters)) }}">{{ page-2 }}</a>
-    </span>
-    {% endif %}
-
-    {% if page > 1 %}
-    <span class="page">
-        <a href="{{ path(paginationRoute, {'page': page-1}|merge(pathParameters)) }}">{{ page-1 }}</a>
-    </span>
-    {% endif %}
+    {% for i in [3,2,1] %}
+        {% if page > i %}
+            <span class="current">
+                <a href="{{ path(paginationRoute, {'page': page-i}|merge(pathParameters)) }}">{{ page-i }}</a>
+            </span>
+        {% endif %}
+    {% endfor %}
 
     <span class="current">
         {{ page }}
     </span>
 
-    {% if page < (totalPages - 2) %}
-        <span class="page">
-        <a href="{{ path(paginationRoute, {'page': page+1}|merge(pathParameters)) }}">{{ page+1 }}</a>
-    </span>
-    {% endif %}
-
-    {% if page < (totalPages - 1) %}
-        <span class="page">
-        <a href="{{ path(paginationRoute, {'page': page+2}|merge(pathParameters)) }}">{{ page+2 }}</a>
-    </span>
-    {% endif %}
-
-    {% if page < totalPages %}
-        <span class="page">
-        <a href="{{ path(paginationRoute, {'page': page+3}|merge(pathParameters)) }}">{{ page+3 }}</a>
-    </span>
-    {% endif %}
+    {% for i in [1,2,3] %}
+        {% if (page + i) <= totalPages %}
+            <span class="page">
+            <a href="{{ path(paginationRoute, {'page': page+i}|merge(pathParameters)) }}">{{ page+i }}</a>
+        </span>
+        {% endif %}
+    {% endfor %}
 
     {% if page < totalPages %}
         <span class="first">
@@ -57,7 +37,7 @@
     </span>
     {% endif %}
 
-    {% if page < (totalPages - 4) %}
+    {% if (page+4) < totalPages %}
         <span class="previous">
         <a href="{{ path(paginationRoute, {'page': totalPages}|merge(pathParameters)) }}">&gt;&gt;</a>
     </span>
