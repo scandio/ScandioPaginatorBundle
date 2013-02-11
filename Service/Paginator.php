@@ -12,6 +12,7 @@ class Paginator implements \Iterator
     private $list;
     private $totalCount = 0;
     private $templateEngine;
+    private $listKeys;
 
     private $current;
 
@@ -47,6 +48,7 @@ class Paginator implements \Iterator
     public function setList(array $items)
     {
         $this->list = $items;
+        $this->listKeys = array_keys($items);
     }
 
     /**
@@ -77,7 +79,8 @@ class Paginator implements \Iterator
      */
     public function current()
     {
-        return !empty($this->list[$this->current]) ? $this->list[$this->current] : null;
+        $key = $this->listKeys[$this->current];
+        return $this->list[$key];
     }
 
     /**
@@ -99,7 +102,7 @@ class Paginator implements \Iterator
      */
     public function key()
     {
-        return $this->current;
+        return $this->listKeys[$this->current];
     }
 
     /**
@@ -111,7 +114,7 @@ class Paginator implements \Iterator
      */
     public function valid()
     {
-        return !empty($this->list[$this->current]);
+        return !empty($this->listKeys[$this->current]) && !empty($this->list[$this->listKeys[$this->current]]);
     }
 
     /**

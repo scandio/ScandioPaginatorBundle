@@ -47,6 +47,7 @@ You have to build your own database function! This is **NOT** a doctrine query p
 $em = $this->get('doctrine')->getEntityManager();
 $paginator = $this->get('scandio.paginator');
 $repository = $em->getRepository('...');
+$page = $request->get('page', 1);
 $limit = 10;
 
 $attributes = $repository->getAll($page, $limit);
@@ -74,5 +75,5 @@ return array(
 </ul>
 
 {# use pagination link here. Use "page" for pagination index number #}
-{{ attributes.paginationBar('attributes_pagination') }}
+{{ attributes.paginationBar('attributes_pagination') | raw }}
 ```
