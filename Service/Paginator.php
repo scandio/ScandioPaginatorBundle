@@ -114,7 +114,7 @@ class Paginator implements \Iterator
      */
     public function valid()
     {
-        return !empty($this->listKeys[$this->current]) && !empty($this->list[$this->listKeys[$this->current]]);
+        return isset($this->listKeys[$this->current]) && !empty($this->list[$this->listKeys[$this->current]]);
     }
 
     /**
