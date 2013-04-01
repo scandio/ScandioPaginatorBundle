@@ -13,7 +13,7 @@
         <service id="scandio.paginator_factory" class="%scandio.paginator.factory.class%" scope="request">
             <argument type="service" id="router" />
             <argument type="service" id="templating" />
-            <argument type="service" id="request" />
+            <argument type="service" id="request" strict="false"/>
         </service>
 
         <service id="scandio.paginator" class="%scandio.paginator.class%" factory-service="scandio.paginator_factory" factory-method="create">
