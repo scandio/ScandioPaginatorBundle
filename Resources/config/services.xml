@@ -11,7 +11,7 @@
 
     <services>
         <service id="scandio.paginator_factory" class="%scandio.paginator.factory.class%">
-            <argument type="service" id="router" />
+            <argument type="service" id="router" strict="false"/>
             <argument type="service" id="templating" />
             <argument type="service" id="request" strict="false"/>
         </service>
