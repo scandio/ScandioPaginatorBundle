@@ -9,6 +9,9 @@ class Paginator implements \Iterator
     private $router;
     private $limit;
     private $page;
+    /**
+     * @var \ArrayIterator
+     */
     private $list;
     private $totalCount = 0;
     private $templateEngine;
@@ -45,10 +48,14 @@ class Paginator implements \Iterator
     /**
      * @param array $items
      */
-    public function setList(array $items)
+    public function setList($items)
     {
-        $this->list = $items;
-        $this->listKeys = array_keys($items);
+        if (is_array($items)) {
+            $iterator = new \ArrayIterator($items);
+        } else {
+            $iterator = $items;
+        }
+        $this->list = $iterator;
     }
 
     /**
@@ -79,8 +86,7 @@ class Paginator implements \Iterator
      */
     public function current()
     {
-        $key = $this->listKeys[$this->current];
-        return $this->list[$key];
+        return $this->list->current();
     }
 
     /**
@@ -91,7 +97,7 @@ class Paginator implements \Iterator
      */
     public function next()
     {
-        $this->current++;
+        $this->list->next();
     }
 
     /**
@@ -102,7 +108,7 @@ class Paginator implements \Iterator
      */
     public function key()
     {
-        return $this->listKeys[$this->current];
+        return $this->list->key();
     }
 
     /**
@@ -114,7 +120,7 @@ class Paginator implements \Iterator
      */
     public function valid()
     {
-        return isset($this->listKeys[$this->current]) && !empty($this->list[$this->listKeys[$this->current]]);
+        return $this->list->valid();
     }
 
     /**
@@ -125,7 +131,7 @@ class Paginator implements \Iterator
      */
     public function rewind()
     {
-        $this->current = 0;
+        $this->list->rewind();
     }
 
     /**
